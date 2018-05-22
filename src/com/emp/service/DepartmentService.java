@@ -12,7 +12,7 @@ public boolean delete(int departmentId);
 public Department get(int departmentId);
 public boolean add(Employee emp, Department department);
 //public boolean add(int empid,int departmentId); 
-public boolean delete(int empid,int departmentId);
+public boolean delete(Employee emp, Department department);
 public List<Employee> getEmployees(int empId);
 public List<Employee> getEmployees(int deptId,int amount);
 public List<Employee> getEmployees(int deptId,int min,int max);

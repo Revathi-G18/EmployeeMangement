@@ -1,6 +1,7 @@
 package com.emp.model;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import com.emp.serviceImpl.EmployeeServiceImpl;
 
@@ -13,9 +14,10 @@ public static void main(String[] args) {
 	
 	impl.save(emp);
 	impl.save(emp1);
-	impl.delete(201);
-	//impl.display(emp);
-	impl.display();
+	//impl.delete(201);
+	impl.display(emp);
+	//Collections.sort(empList,new Employee(101,"ray",67890));
+	//impl.display();
 	//System.out.println(impl.get(201));
 		
 }

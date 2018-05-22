@@ -48,20 +48,24 @@ public class DepartmentServiceImpl implements DepartmentService{
 	
 	public boolean add(Employee emp, Department department) {
 		if((get(department.getDepartmentId())!=null)&&(get(emp.getId())!=null)){
-			DeptList.add(emp.getId(), department);
-		}		
+			return false;
+		}	
+		DeptList.add(emp.getId(), department);
 		return true;
 	}
 
 	@Override
-	public boolean delete(int empid, int departmentId) {
-		// TODO Auto-generated method stub
+	public boolean delete(Employee emp, Department department) {
+		if((get(department.getDepartmentId())!=null)&&(get(emp.getId())!=null)){
+			DeptList.remove(department.getDepartmentId());
+			return true;
+		}		
 		return false;
 	}
 
 	@Override
 	public List<Employee> getEmployees(int empId) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

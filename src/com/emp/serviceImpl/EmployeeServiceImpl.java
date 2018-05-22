@@ -1,12 +1,13 @@
 package com.emp.serviceImpl;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import com.emp.model.Employee;
 import com.emp.service.EmployeeService;
 
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
 	//Employee employee ;// null will be stored in this object if we try to access this it will return null pointer exception
 	List<Employee> empList =new ArrayList<Employee>();
 
@@ -67,8 +68,8 @@ public class EmployeeServiceImpl implements EmployeeService{
 
 	@Override
 	public void display() {
-		for(Employee emp : empList){
-			display(emp);
+		for(Employee empl : empList){
+			display(empl);
 		}
 		
 	}
@@ -78,6 +79,17 @@ public class EmployeeServiceImpl implements EmployeeService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	/*public int compareTo(Employee o1,Employee o2) {
+		return o1.getSalary()-o2.getSalary();
+		
+	}*/
+	/*@Override
+	public int compareTo(Employee o1,Employee o2) {
+		// TODO Auto-generated method stub
+		return (int) (o1.getSalary()-o2.getSalary());
+	}*/
+
 	
 	
 }
