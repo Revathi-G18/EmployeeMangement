@@ -5,6 +5,9 @@ private int id;
 private String Name;
 private int Salary;
 
+public Employee() {
+	super();
+}
 public Employee(int id, String name, int salary) {
 	super();
 	this.id = id;

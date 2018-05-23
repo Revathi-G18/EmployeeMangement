@@ -22,14 +22,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public boolean update(Employee emp) {
-		if(get(emp.getId())!=null){
-			empList.remove(emp);
-			//empList.set((empList.indexOf(emp.getId())), emp.setId(123));
-			//empList.get(index).setName("roy");
-			empList.get(emp.getId()).setSalary(13000);
-			empList.add(emp);
-		}
-		
+		if(get(emp.getId())==null){
+			return false;
+		}		
+		//empList.set((empList.indexOf(emp.getId())), emp.setId(123));
+		//empList.get(index).setName("roy");
+		Employee temp=get(emp.getId());
+		empList.remove(temp);
+		//.setSalary(13000);
+		empList.add(emp);
 		return true;
 	}
 	

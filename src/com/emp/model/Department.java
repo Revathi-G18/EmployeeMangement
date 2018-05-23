@@ -5,7 +5,7 @@ import java.util.List;
 public class Department {
 	private int DepartmentId;
 	private String DepartmentName;
-	private List<Employee> Employee;
+	private List<Employee> EmployeeList;
 
 	public int getDepartmentId() {
 		return DepartmentId;
@@ -23,19 +23,22 @@ public class Department {
 		DepartmentName = departmentName;
 	}
 
-	public List<Employee> getEmployee() {
-		return Employee;
+	
+
+	public List<Employee> getEmployeeList() {
+		return EmployeeList;
 	}
 
-	public void setEmployee(List<Employee> employee) {
-		Employee = employee;
+	public void setEmployeeList(List<Employee> employeeList) {
+		EmployeeList = employeeList;
 	}
 
-	public Department(int departmentId, String departmentName, List<com.emp.model.Employee> employee) {
+	public Department(int departmentId, String departmentName) {
 		super();
 		DepartmentId = departmentId;
 		DepartmentName = departmentName;
-		Employee = employee;
-	}	
+	}
+
+		
 
 }
