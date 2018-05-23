@@ -51,10 +51,15 @@ public class EmployeeDetails implements Comparator<EmployeeDetails> {
 		}
 	}
 
-	@Override
+	/*@Override
 	public int compare(EmployeeDetails o1, EmployeeDetails o2) {
 		// TODO Auto-generated method stub
 		return o1.getSalary()-o2.getSalary();
+	}*/
+	@Override
+	public int compare(EmployeeDetails o1, EmployeeDetails o2) {
+		// TODO Auto-generated method stub
+		return o1.getName().compareTo(o2.getName());
 	}
 	
 }

@@ -23,13 +23,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public boolean update(Employee emp) {
 		if(get(emp.getId())!=null){
-			empList.remove(emp.getId());
-			
+			empList.remove(emp);
+			//empList.set((empList.indexOf(emp.getId())), emp.setId(123));
+			//empList.get(index).setName("roy");
+			empList.get(emp.getId()).setSalary(13000);
+			empList.add(emp);
 		}
-		empList.add(emp);
+		
 		return true;
 	}
-
+	
 	@Override
 	public boolean delete(int id) {
 		Employee empl=get(id);
@@ -80,15 +83,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return null;
 	}
 
-	/*public int compareTo(Employee o1,Employee o2) {
-		return o1.getSalary()-o2.getSalary();
-		
-	}*/
-	/*@Override
-	public int compareTo(Employee o1,Employee o2) {
-		// TODO Auto-generated method stub
-		return (int) (o1.getSalary()-o2.getSalary());
-	}*/
+	@Override
+	public String toString() {
+		return "EmployeeServiceImpl [empList=" + empList + "]";
+	}
 
 	
 	

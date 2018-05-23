@@ -1,9 +1,11 @@
 package com.emp.model;
 
+import java.util.List;
+
 public class Department {
 	private int DepartmentId;
 	private String DepartmentName;
-	private Employee Employee;
+	private List<Employee> Employee;
 
 	public int getDepartmentId() {
 		return DepartmentId;
@@ -21,19 +23,19 @@ public class Department {
 		DepartmentName = departmentName;
 	}
 
-	public Employee getEmployee() {
+	public List<Employee> getEmployee() {
 		return Employee;
 	}
 
-	public void setEmployee(Employee employee) {
+	public void setEmployee(List<Employee> employee) {
 		Employee = employee;
 	}
 
-	public Department(int departmentId, String departmentName, com.emp.model.Employee employee) {
+	public Department(int departmentId, String departmentName, List<com.emp.model.Employee> employee) {
 		super();
 		DepartmentId = departmentId;
 		DepartmentName = departmentName;
 		Employee = employee;
-	}
+	}	
 
 }

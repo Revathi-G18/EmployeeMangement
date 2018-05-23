@@ -11,7 +11,7 @@ public class DepartmentServiceImpl implements DepartmentService{
 	List<Department> DeptList =new ArrayList<Department>();
 	@Override
 	public boolean add(Department department) {
-		if(get(department.getDepartmentId())==null){
+		if(getdep(department.getDepartmentId())==null){
 			DeptList.add(department);
 		}
 		
@@ -20,7 +20,7 @@ public class DepartmentServiceImpl implements DepartmentService{
 
 	@Override
 	public boolean update(Department department) {
-		if(get(department.getDepartmentId())==null){
+		if(getdep(department.getDepartmentId())==null){
 			DeptList.add(department);
 		}
 		
@@ -29,14 +29,23 @@ public class DepartmentServiceImpl implements DepartmentService{
 
 	@Override
 	public boolean delete(int departmentId) {
-		if(get(departmentId)!=null){
-			DeptList.remove(departmentId);
+		Department de=getdep(departmentId);
+		if(de!=null){
+			DeptList.remove(de);
 		}		
 		return false;
 	}
+	@Override
+	public void getAllDepartments() {
+		String depName="";
+		for(int i=0;i<DeptList.size();i++){
+			depName=DeptList.get(i).getDepartmentName();
+			System.out.println(depName);
+		}
+	}
 
 	@Override
-	public Department get(int departmentId) {
+	public Department getdep(int departmentId) {
 		for(Department dep:DeptList){
 			if(dep.getDepartmentId()==departmentId){
 				return dep;
@@ -44,20 +53,29 @@ public class DepartmentServiceImpl implements DepartmentService{
 		}
 		return null;
 	}
-
-	
-	public boolean add(Employee emp, Department department) {
-		if((get(department.getDepartmentId())!=null)&&(get(emp.getId())!=null)){
-			return false;
-		}	
-		DeptList.add(emp.getId(), department);
-		return true;
+	public Department getemp(int Id) {
+		for(Department em:DeptList){
+			if(em.getEmployee().getId()==Id){
+				return em;
+			}
+		}
+		return null;
 	}
-
+	
 	@Override
-	public boolean delete(Employee emp, Department department) {
-		if((get(department.getDepartmentId())!=null)&&(get(emp.getId())!=null)){
-			DeptList.remove(department.getDepartmentId());
+	public Boolean addEmployeeToDepartment(int empID, int deptID) {
+		if(getemp(empID)!=null && getdep(deptIdD)!=null){
+			DeptList.add(empID);
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean deleteEmployeefromDepartment(int deptId,int empId) {
+		Department de=getdep(deptId);
+		Department em=getemp(empId);
+		if(de!=null &&(em!=null)){
+			DeptList.remove(empId);
 			return true;
 		}		
 		return false;
@@ -94,4 +112,21 @@ public class DepartmentServiceImpl implements DepartmentService{
 		for(Department dep : DeptList){
 			display(dep);
 		}
-	}}
+	}
+
+	@Override
+	public String toString() {
+		return "DepartmentServiceImpl [DeptList=" + DeptList + "]";
+	}
+
+	@Override
+	public Employee getemp(int Id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+	
+
+	}
