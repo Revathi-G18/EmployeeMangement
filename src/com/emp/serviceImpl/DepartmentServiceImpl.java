@@ -9,8 +9,18 @@ import com.emp.service.DepartmentService;
 import com.emp.service.EmployeeService;
 
 public class DepartmentServiceImpl implements DepartmentService {
-	List<Department> DeptList = new ArrayList<Department>();
-	EmployeeServiceImpl employeeservice = new EmployeeServiceImpl();
+	private List<Department> DeptList;
+	EmployeeService employeeservice;
+
+	public DepartmentServiceImpl() {
+		DeptList = new ArrayList<Department>();
+		employeeservice = new EmployeeServiceImpl();
+	}
+
+	public DepartmentServiceImpl(EmployeeService empservice) {
+		DeptList = new ArrayList<Department>();
+		this.employeeservice = empservice;
+	}
 
 	@Override
 	public boolean add(Department department) {
@@ -63,30 +73,53 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	@Override
 	public boolean addEmployeeToDepartment(int empId, int deptId) {
-		
-		if (employeeservice.get(empId) != null && getdep(deptId) != null) {
-			isExist(empId, deptId);
-			
+		Employee emp = employeeservice.get(empId);
+		Department dep = getdep(deptId);
+		List<Employee> empList = getEmployees(deptId);
+		DeptList.remove(dep);
+
+		if (emp == null || dep == null) {
+			return false;
 		}
-		return false;
+		if (empList == null) {
+			empList = new ArrayList<Employee>();
+		}
+		isExist(empId, deptId);
+		empList.add(emp);
+		dep.setEmployeeList(empList);
+		DeptList.add(dep);
+		return true;
 	}
 
-	public boolean isExist(int empId,int DeptId){
-		List<Employee> Emplist=getEmployees(DeptId);
-		for(Employee emp:Emplist){
-			if(emp.getId()==empId){
+	public boolean isExist(int empId, int DeptId) {
+		List<Employee> Emplist = getEmployees(DeptId);
+		if (Emplist == null) {
+			return false;
+		}
+		for (Employee emp : Emplist) {
+			if (emp.getId() == empId) {
 				return false;
 			}
-		}return true;
+		}
+		return true;
 	}
 
 	@Override
 	public boolean deleteEmployeefromDepartment(int deptId, int empId) {
-		if (employeeservice.get(empId) != null && getdep(deptId) != null) {
-			isExist(empId, deptId);
-			DeptList.remove(empId);
+		Employee emp = employeeservice.get(empId);
+		Department dep = getdep(deptId);
+		if (emp == null || dep == null) {
+			return false;
 		}
-		return false;
+		List<Employee> empList = getEmployees(deptId);
+		if (empList == null) {
+			empList = new ArrayList<Employee>();
+		}
+		isExist(empId, deptId);
+		empList.remove(emp);
+		// dep.setEmployeeList(empList);
+		// DeptList.add(dep);
+		return true;
 	}
 
 	@Override
@@ -113,14 +146,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	public void display(Department dep) {
-		System.out.println(dep.getDepartmentId());
-		System.out.println(dep.getDepartmentName());
-		/*
-		 * System.out.println(dep.getEmployee().getId());
-		 * System.out.println(dep.getEmployee().getName());
-		 * System.out.println(dep.getEmployee().getSalary());
-		 */
-
+		System.out.println(dep);
+		List<Employee> emp = dep.getEmployeeList();
+		employeeservice.display(emp);
 	}
 
 	@Override
@@ -131,14 +159,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
-	public String toString() {
-		return "DepartmentServiceImpl [DeptList=" + DeptList + "]";
-	}
-
-	@Override
 	public List<Department> getdepartment() {
 		// TODO Auto-generated method stub
 		return DeptList;
 	}
 
+	@Override
+	public String toString() {
+		return "DepartmentServiceImpl [DeptList=" + DeptList + "]";
+	}
 }

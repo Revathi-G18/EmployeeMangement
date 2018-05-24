@@ -2,32 +2,57 @@ package com.emp.model;
 
 import java.util.List;
 
+import com.emp.service.DepartmentService;
+import com.emp.service.EmployeeService;
 import com.emp.serviceImpl.DepartmentServiceImpl;
+import com.emp.serviceImpl.EmployeeServiceImpl;
 
 public class DepartmentTest {
-public static void main(String[] args) {
-	DepartmentServiceImpl deptservice=new DepartmentServiceImpl();
-	Employee emp;
-	Department dep1;
-	//emp=new Employee(101,"ray",67890);
-	dep1=new Department(111,"IT");
-	deptservice.add(dep1);
-	//emp=new Employee(203,"roy",8907);
-	dep1=new Department(121,"QA");
-	deptservice.add(dep1);
-	//emp=new Employee(444,"benham",9000);
-	dep1=new Department(123,"Network");
-	deptservice.add(dep1);
-	//System.out.println(deptservice.getemp(203));
-	//deptservice.deleteEmployeefromDepartment(111, 101);
-	//deptservice.delete(111);
-	//deptservice.add(emp, dep1);//is this necessary
-	//deptservice.getAllDepartments();
-	dep1=new Department(123,"Testing");
-	deptservice.update(dep1);
-	//deptservice.delete(121);
-	deptservice.getAllDepartments();
-	deptservice.display();
-	
-}
+	private static DepartmentService deptservice;
+	private static EmployeeService empservice;
+
+	public static void init() {
+		empservice = new EmployeeServiceImpl();
+		deptservice = new DepartmentServiceImpl(empservice);
+
+		Employee emp;
+		emp = new Employee(101, "ray", 67890);
+		empservice.save(emp);
+		emp = new Employee(201, "mellisa", 56789);
+		empservice.save(emp);
+		emp = new Employee(132, "Aria", 789000);
+		empservice.save(emp);
+		emp = new Employee(234, "Emily", 7678);
+
+		Department dep1;
+		dep1 = new Department(111, "IT");
+		deptservice.add(dep1);
+		dep1 = new Department(121, "QA");
+		deptservice.add(dep1);
+		dep1 = new Department(123, "Network");
+		deptservice.add(dep1);
+	}
+
+	public static void main(String[] args) {
+		init();
+		// deptservice.deleteEmployeefromDepartment(111, 101); //delets employee
+		// id from department
+		// deptservice.delete(111); //delete department
+		// deptservice.getAllDepartmentName();//prints all departments in
+		// depList
+		// dep1=new Department(123,"Testing"); //to update creating object with
+		// deptId which we want to update
+		// deptservice.update(dep1);
+		
+		deptservice.addEmployeeToDepartment(101, 123);
+		System.out.println(deptservice.getdepartment());
+		deptservice.addEmployeeToDepartment(201, 123);
+		System.out.println(deptservice.getdepartment());
+		deptservice.getEmployees(123);
+		System.out.println(deptservice.getdepartment());
+		deptservice.deleteEmployeefromDepartment(123, 101);
+		System.out.println(deptservice.getdepartment());
+		// deptservice.display();
+
+	}
 }

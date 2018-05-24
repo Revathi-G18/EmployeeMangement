@@ -30,7 +30,7 @@ public class Department {
 	}
 
 	public void setEmployeeList(List<Employee> employeeList) {
-		EmployeeList = employeeList;
+		this.EmployeeList = employeeList;
 	}
 
 	public Department(int departmentId, String departmentName) {
@@ -39,6 +39,13 @@ public class Department {
 		DepartmentName = departmentName;
 	}
 
+	@Override
+	public String toString() {
+		return "Department [DepartmentId=" + DepartmentId + ", DepartmentName=" + DepartmentName + ", EmployeeList="
+				+ EmployeeList + "]";
+	}
+
+	
 		
 
 }

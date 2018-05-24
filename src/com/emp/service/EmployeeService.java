@@ -12,5 +12,7 @@ public Employee get(int id);
 public List<Employee> get();
 public void display(Employee emp);
 public void display();
+public void display(List<Employee> emp);
+public List<Employee> getAllEmployees(int salary);
 public List<Employee> get(int min,int max);
 }

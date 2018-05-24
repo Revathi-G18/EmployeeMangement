@@ -9,7 +9,12 @@ import com.emp.service.EmployeeService;
 
 public class EmployeeServiceImpl implements EmployeeService {
 	//Employee employee ;// null will be stored in this object if we try to access this it will return null pointer exception
-	List<Employee> empList =new ArrayList<Employee>();
+	List<Employee> empList;
+	
+
+	public EmployeeServiceImpl() {
+		empList =new ArrayList<Employee>();
+	}
 
 	@Override
 	public boolean save(Employee emp) {
@@ -61,7 +66,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}*/
 		return empList;
 	}
-
+	@Override
+	public void display(List<Employee> empList) {
+		for(Employee emp:empList){
+			System.out.println(emp);
+		}
+		
+	}
 	@Override
 	public void display(Employee emp) {
 		System.out.println(emp.getId());
@@ -74,14 +85,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void display() {
 		for(Employee empl : empList){
 			display(empl);
-		}
-		
+		}		
 	}
 
 	@Override
+
+	
 	public List<Employee> get(int min, int max) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Employee> salaryList=new ArrayList<Employee>();
+		for(Employee emp:empList){
+			if(emp.getSalary()>min && emp.getSalary()<max){
+				salaryList.add(emp);
+			}
+			}return salaryList;
 	}
 
 	@Override
@@ -89,6 +105,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return "EmployeeServiceImpl [empList=" + empList + "]";
 	}
 
+	@Override
+	public List<Employee> getAllEmployees(int salary) {
+		List<Employee> salaryList=new ArrayList<Employee>();
+		for(Employee emp:empList){
+			if(emp.getSalary()>salary){
+				salaryList.add(emp);
+			}
+			}	
+	return salaryList;
+		}
+
 	
-	
-}
+	}

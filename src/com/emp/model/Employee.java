@@ -29,6 +29,10 @@ public void setName(String name) {
 public int getSalary() {
 	return Salary;
 }
+@Override
+public String toString() {
+	return "Employee [id=" + id + ", Name=" + Name + ", Salary=" + Salary + "]";
+}
 public void setSalary(int salary) {
 	Salary = salary;
 }
