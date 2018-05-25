@@ -11,6 +11,7 @@ public boolean update(Department department);
 public boolean delete(int departmentId);
 public Department getdep(int departmentId);
 public void getAllDepartmentName();
+public void display(Department dep);
 //public boolean add(Employee emp, Department department);
 //public boolean add(int empid,int departmentId); 
 public boolean addEmployeeToDepartment(int empId, int deptId);

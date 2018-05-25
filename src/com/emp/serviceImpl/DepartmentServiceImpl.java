@@ -76,6 +76,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 		Employee emp = employeeservice.get(empId);
 		Department dep = getdep(deptId);
 		List<Employee> empList = getEmployees(deptId);
+		if(isExist(empId, deptId)){
+			return false;
+		}
 		DeptList.remove(dep);
 
 		if (emp == null || dep == null) {
@@ -84,7 +87,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 		if (empList == null) {
 			empList = new ArrayList<Employee>();
 		}
-		isExist(empId, deptId);
+		//isExist(empId, deptId);
 		empList.add(emp);
 		dep.setEmployeeList(empList);
 		DeptList.add(dep);
@@ -98,10 +101,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 		}
 		for (Employee emp : Emplist) {
 			if (emp.getId() == empId) {
-				return false;
+				return true;
 			}
-		}
-		return true;
+		}return false;
 	}
 
 	@Override
@@ -135,14 +137,32 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	@Override
 	public List<Employee> getEmployees(int deptId, int amount) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Employee> salaryList=new ArrayList<Employee>();
+		Department dep=getdep(deptId);
+		
+		List<Employee> EmpList=dep.getEmployeeList();
+		for(Employee emp:EmpList){
+			if(emp.getSalary()>amount){
+				salaryList.add(emp);
+			}
+		}
+		
+		return salaryList;
 	}
 
 	@Override
 	public List<Employee> getEmployees(int deptId, int min, int max) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Employee> salaryList=new ArrayList<Employee>();
+		Department dep=getdep(deptId);
+		
+		List<Employee> EmpList=dep.getEmployeeList();
+		for(Employee emp:EmpList){
+			if(emp.getSalary()>min && emp.getSalary()<max){
+				salaryList.add(emp);
+			}
+		}
+		
+		return salaryList;
 	}
 
 	public void display(Department dep) {

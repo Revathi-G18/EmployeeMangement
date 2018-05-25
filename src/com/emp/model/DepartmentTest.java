@@ -48,10 +48,20 @@ public class DepartmentTest {
 		System.out.println(deptservice.getdepartment());
 		deptservice.addEmployeeToDepartment(201, 123);
 		System.out.println(deptservice.getdepartment());
-		deptservice.getEmployees(123);
+		deptservice.addEmployeeToDepartment(201, 123);
 		System.out.println(deptservice.getdepartment());
-		deptservice.deleteEmployeefromDepartment(123, 101);
+		deptservice.addEmployeeToDepartment(132, 111);
 		System.out.println(deptservice.getdepartment());
+		deptservice.addEmployeeToDepartment(234, 121);
+		System.out.println(deptservice.getdepartment());
+		//deptservice.deleteEmployeefromDepartment(123, 101);
+		//System.out.println(deptservice.getdepartment());
+		//deptservice.getEmployees(123);
+		//System.out.println(deptservice.getdepartment());
+		//deptservice.deleteEmployeefromDepartment(123, 101);
+		//System.out.println(deptservice.getdepartment());
+		//System.out.println(deptservice.getEmployees(123, 700));// displays employees in the department whose salary is greater than 700
+		//System.out.println(deptservice.getEmployees(123, 10000, 60000));//displays employees in the department whose salary is greater than 10k n less than 60k
 		// deptservice.display();
 
 	}
