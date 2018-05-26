@@ -10,8 +10,7 @@ import com.emp.service.EmployeeService;
 public class EmployeeServiceImpl implements EmployeeService {
 	//Employee employee ;// null will be stored in this object if we try to access this it will return null pointer exception
 	//what is access specifier
-	List<Employee> empList;
-	
+	public List<Employee> empList;
 
 	public EmployeeServiceImpl() {
 		empList =new ArrayList<Employee>();
@@ -74,7 +73,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		
 	}
-	@Override
+	/*@Override
 	public void display(Employee emp) {
 		//why to print individual properties?
 		//overridden toString method?
@@ -89,7 +88,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		for(Employee empl : empList){
 			display(empl);
 		}		
-	}
+	}*/
 
 	@Override
 
@@ -115,7 +114,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 			if(emp.getSalary()>salary){
 				salaryList.add(emp);
 			}
-			}	
+	
+		}	
 	return salaryList;
 		}
 
