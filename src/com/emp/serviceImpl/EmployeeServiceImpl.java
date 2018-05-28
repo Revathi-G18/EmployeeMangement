@@ -1,16 +1,21 @@
 
 package com.emp.serviceImpl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import com.emp.db.DBConnection;
 import com.emp.model.Employee;
 import com.emp.service.EmployeeService;
 
 public class EmployeeServiceImpl implements EmployeeService {
 	//Employee employee ;// null will be stored in this object if we try to access this it will return null pointer exception
-	
+	private Connection con;
+	private PreparedStatement prepareStatement;
 	List<Employee> empList;	
 
 	public EmployeeServiceImpl() {
@@ -19,11 +24,27 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public boolean save(Employee emp) {
-		if(get(emp.getId())!=null){
+		
+		con=DBConnection.getConnection();
+		try {
+			prepareStatement=con.prepareStatement("insert into employee values(?,?,?,?);");
+			prepareStatement.setInt(1, emp.getId());
+			prepareStatement.setString(2, emp.getName());
+			prepareStatement.setInt(3, emp.getSalary());
+			prepareStatement.setInt(4, emp.getDeptId());
+			prepareStatement.executeUpdate();
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		/*if(get(emp.getId())!=null){
 			return false;
 		}
 		empList.add(emp);
-		return true;
+		return true;*/
 	}
 	@Override
 	public boolean update(Employee emp) {
@@ -85,11 +106,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}		
 	}
 
-	@Override
-
-	
+	@Override	
 	public List<Employee> get(int min, int max) {
-		List<Employee> salaryList=new ArrayList<Employee>();
+		List< Employee> salaryList=new ArrayList<Employee>();
 		for(Employee emp:empList){
 			if(emp.getSalary()>min && emp.getSalary()<max){
 				salaryList.add(emp);

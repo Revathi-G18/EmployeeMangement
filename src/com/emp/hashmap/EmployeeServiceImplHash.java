@@ -48,11 +48,7 @@ public class EmployeeServiceImplHash implements EmployeeService {
 
 	@Override
 	public Employee get(int id) {
-		Employee emp=null;
-		if(empMap.containsKey(id)){
-		 emp=empMap.get(id);
-		}
-		return emp;
+		return empMap.get(id);
 	}
 
 	@Override

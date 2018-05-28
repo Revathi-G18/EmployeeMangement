@@ -11,17 +11,17 @@ public class EmployeeTest {
 
 		EmployeeServiceImpl impl = new EmployeeServiceImpl();
 		Employee emp;
-		emp = new Employee(101, "ray", 67890);
+		emp = new Employee(101, "ray", 67890,10);
 		impl.save(emp);
-		emp = new Employee(201, "mellisa", 56789);
+		emp = new Employee(201, "mellisa", 56789,11);
 		impl.save(emp);
-		emp = new Employee(132, "Aria", 789000);
+		emp = new Employee(132, "Aria", 789000,12);
 		impl.save(emp);
-		emp = new Employee(234, "Emily", 7678);
+		emp = new Employee(234, "Emily", 7678,10);
 		impl.save(emp);
 		// impl.delete(201);//delete particular employee from list
 		impl.display();//display all employee
-		emp = new Employee(101, "Spencer", 783000);//updates the existig employee with id
+		emp = new Employee(101, "Spencer", 783000,11);//updates the existig employee with id
 		impl.update(emp);
 		impl.display();
 		impl.get();//gets whole employee list

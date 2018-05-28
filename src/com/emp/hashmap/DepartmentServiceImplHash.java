@@ -15,12 +15,9 @@ public class DepartmentServiceImplHash implements DepartmentService {
 	Map<Integer, Department> deptMap;
 	private EmployeeService empservice;
 
-	public DepartmentServiceImplHash() {
-		deptMap = new HashMap<Integer, Department>();
-		empservice = new EmployeeServiceImplHash();
-	}
 	public DepartmentServiceImplHash(EmployeeService empservice) {
-		super();
+		deptMap = new HashMap<Integer, Department>();
+		//empservice = new EmployeeServiceImplHash();
 		this.empservice = empservice;
 	}
 	@Override
@@ -80,25 +77,24 @@ public class DepartmentServiceImplHash implements DepartmentService {
 		if (emp == null || dep == null) {
 			return false;
 		}
-		deptMap.remove(dep);
-		HashMap<Integer, Employee> empMap = new HashMap<Integer, Employee>();
-		if (empList != null) {
+		//HashMap<Integer, Employee> empMap = new HashMap<Integer, Employee>();
+		/*if (empList != null) {
 			for (Employee employee : empList) {
 				empMap.put(employee.getId(), employee);
 			}
-		} else {
+		} else*/
+		if(empList==null){
 			empList = new ArrayList<Employee>();
 		}
-		if (empMap.containsKey(empId)) {
-			return false;
-		}
-		deptMap.put(empId, dep);
+		empList.add(emp);
+		dep.setEmployeeList(empList);
+		deptMap.put(deptId, dep);
 
-		return false;
+		return true;
 
 	}
 
-	public boolean isExist(int empId, int DeptId) {
+	/*public boolean isExist(int empId, int DeptId) {
 		List<Employee> Emplist = getEmployees(DeptId);
 		HashMap<Integer, Employee> empMap = new HashMap<Integer, Employee>();
 		if (Emplist == null) {
@@ -111,12 +107,21 @@ public class DepartmentServiceImplHash implements DepartmentService {
 			return true;
 		}
 		return false;
-	}
+	}*/
 
 	@Override
 	public boolean deleteEmployeefromDepartment(int deptId, int empId) {
-		// TODO Auto-generated method stub
-		return false;
+		Employee emp = empservice.get(empId);
+		Department dep = getdep(deptId);
+		List<Employee> empList = getEmployees(deptId);
+		if (emp == null || dep == null) {
+			return false;
+		}		
+		if(empList==null){
+			empList = new ArrayList<Employee>();
+			}
+		empList.remove(emp);
+			return true;
 	}
 
 	@Override
@@ -139,8 +144,16 @@ public class DepartmentServiceImplHash implements DepartmentService {
 
 	@Override
 	public List<Employee> getEmployees(int deptId, int amount) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Employee> salaryList=new ArrayList<Employee>();
+		Department dep=getdep(deptId);
+		
+		List<Employee> EmpList=dep.getEmployeeList();
+		for(Employee emp:EmpList){
+			if(emp.getSalary()>amount){
+				salaryList.add(emp);
+			}
+		}		
+		return salaryList; 
 	}
 
 	@Override

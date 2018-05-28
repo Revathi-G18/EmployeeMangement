@@ -25,7 +25,8 @@ public class DepartmentMapTest {
 		emp = new Employee(132, "Aria", 789000);
 		empservice.save(emp);
 		emp = new Employee(234, "Emily", 7678);
-
+		empservice.save(emp);
+		
 		Department dept;
 		dept = new Department(111, "IT");
 		deptservice.add(dept);
@@ -36,13 +37,20 @@ public class DepartmentMapTest {
 	}
 public static void main(String[] args) {
 	init();
-	DepartmentService deptservice =new 	DepartmentServiceImplHash();
-	System.out.println(deptservice.getdepartment());
-	deptservice.delete(111);
+	//deptservice =new 	DepartmentServiceImplHash(empservice);
+	//System.out.println(deptservice.getdepartment());
+	//deptservice.delete(111);
 	System.out.println(deptservice.getdepartment());
 	Department dept=new Department(123, "CSC");
 	deptservice.update(dept);
 	System.out.println(deptservice.getdepartment());
-	System.out.println(deptservice.addEmployeeToDepartment(101, 123));
+	deptservice.addEmployeeToDepartment(101, 123);
+	deptservice.addEmployeeToDepartment(234, 123);
+	deptservice.addEmployeeToDepartment(201, 121);
+	deptservice.addEmployeeToDepartment(132, 111);
+	System.out.println(deptservice.getdepartment());
+	deptservice.deleteEmployeefromDepartment(123, 101);
+	System.out.println(deptservice.getdepartment());
+	System.out.println(deptservice.getEmployees(123));
 }
 }

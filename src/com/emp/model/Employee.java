@@ -4,6 +4,7 @@ public class Employee {
 private int id;
 private String Name;
 private int Salary;
+private int deptId;
 
 public Employee() {
 	super();
@@ -13,6 +14,14 @@ public Employee(int id, String name, int salary) {
 	this.id = id;
 	Name = name;
 	Salary = salary;
+}
+
+public Employee(int id, String name, int salary, int deptId) {
+	super();
+	this.id = id;
+	Name = name;
+	Salary = salary;
+	this.deptId = deptId;
 }
 public int getId() {
 	return id;
@@ -28,6 +37,13 @@ public void setName(String name) {
 }
 public int getSalary() {
 	return Salary;
+}
+
+public int getDeptId() {
+	return deptId;
+}
+public void setDeptId(int deptId) {
+	this.deptId = deptId;
 }
 @Override
 public String toString() {
