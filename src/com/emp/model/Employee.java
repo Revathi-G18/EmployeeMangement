@@ -35,7 +35,5 @@ public String toString() {
 }
 public void setSalary(int salary) {
 	Salary = salary;
-}
-
-
+	}
 }

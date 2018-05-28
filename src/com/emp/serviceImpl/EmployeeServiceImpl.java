@@ -1,3 +1,4 @@
+
 package com.emp.serviceImpl;
 
 import java.util.ArrayList;
@@ -9,8 +10,8 @@ import com.emp.service.EmployeeService;
 
 public class EmployeeServiceImpl implements EmployeeService {
 	//Employee employee ;// null will be stored in this object if we try to access this it will return null pointer exception
-	//what is access specifier
-	public List<Employee> empList;
+	
+	List<Employee> empList;	
 
 	public EmployeeServiceImpl() {
 		empList =new ArrayList<Employee>();
@@ -24,7 +25,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		empList.add(emp);
 		return true;
 	}
-
 	@Override
 	public boolean update(Employee emp) {
 		if(get(emp.getId())==null){
@@ -61,9 +61,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public List<Employee> get() {
-		/*for(Employee list:empList){
-			
-		}*/
 		return empList;
 	}
 	@Override
@@ -73,10 +70,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		
 	}
-	/*@Override
+	@Override
 	public void display(Employee emp) {
-		//why to print individual properties?
-		//overridden toString method?
 		System.out.println(emp.getId());
 		System.out.println(emp.getName());
 		System.out.println(emp.getSalary());
@@ -88,7 +83,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		for(Employee empl : empList){
 			display(empl);
 		}		
-	}*/
+	}
 
 	@Override
 
@@ -114,8 +109,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 			if(emp.getSalary()>salary){
 				salaryList.add(emp);
 			}
-	
-		}	
+			}	
 	return salaryList;
 		}
 

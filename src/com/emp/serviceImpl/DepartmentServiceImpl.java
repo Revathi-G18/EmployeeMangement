@@ -10,13 +10,12 @@ import com.emp.service.EmployeeService;
 
 public class DepartmentServiceImpl implements DepartmentService {
 	private List<Department> DeptList;
-	EmployeeService employeeservice;
+	private EmployeeService employeeservice;
 
 	public DepartmentServiceImpl() {
 		DeptList = new ArrayList<Department>();
 		employeeservice = new EmployeeServiceImpl();
 	}
-
 	public DepartmentServiceImpl(EmployeeService empservice) {
 		DeptList = new ArrayList<Department>();
 		this.employeeservice = empservice;
@@ -28,7 +27,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 			DeptList.add(department);
 			return true;
 		}
-
 		return false;
 	}
 
@@ -60,7 +58,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 			System.out.println(depName);
 		}
 	}
-
+	
 	@Override
 	public Department getdep(int departmentId) {
 		for (Department dep : DeptList) {
@@ -80,14 +78,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 			return false;
 		}
 		DeptList.remove(dep);
-
 		if (emp == null || dep == null) {
 			return false;
 		}
 		if (empList == null) {
 			empList = new ArrayList<Employee>();
 		}
-		//isExist(empId, deptId);
 		empList.add(emp);
 		dep.setEmployeeList(empList);
 		DeptList.add(dep);
