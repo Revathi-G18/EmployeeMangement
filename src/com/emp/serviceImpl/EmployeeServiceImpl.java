@@ -48,26 +48,51 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	@Override
 	public boolean update(Employee emp) {
-		if(get(emp.getId())==null){
+		con=DBConnection.getConnection();
+		try {
+			prepareStatement=con.prepareStatement("update employee set name=?, salary=?, deptId=? where id=?");
+			prepareStatement.setString(1, emp.getName());
+			prepareStatement.setInt(2, emp.getSalary());
+			prepareStatement.setInt(3, emp.getDeptId());
+			prepareStatement.setInt(4, emp.getId());
+			if(prepareStatement.executeUpdate()>0)
+			return true;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return false;
 		}		
-		//empList.set((empList.indexOf(emp.getId())), emp.setId(123));
-		//empList.get(index).setName("roy");
+		/*if(get(emp.getId())==null){
+			return false;
+		}	
 		Employee temp=get(emp.getId());
 		empList.remove(temp);
-		//.setSalary(13000);
 		empList.add(emp);
-		return true;
+		return true;*/
+		return false;
 	}
 	
 	@Override
 	public boolean delete(int id) {
-		Employee empl=get(id);
+		con=DBConnection.getConnection();
+		try {
+			prepareStatement=con.prepareStatement("delete from employee where id=?");
+			prepareStatement.setInt(1, id);
+			prepareStatement.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		/*Employee empl=get(id);
 		if(empl!=null){
 			empList.remove(empl);
 		}
 		
-		return false;
+		return false;*/
 	}
 
 	@Override

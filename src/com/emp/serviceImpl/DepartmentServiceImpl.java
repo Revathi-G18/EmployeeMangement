@@ -1,8 +1,12 @@
 package com.emp.serviceImpl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.emp.db.DBConnection;
 import com.emp.model.Department;
 import com.emp.model.Employee;
 import com.emp.service.DepartmentService;
@@ -11,6 +15,8 @@ import com.emp.service.EmployeeService;
 public class DepartmentServiceImpl implements DepartmentService {
 	private List<Department> DeptList;
 	private EmployeeService employeeservice;
+	private Connection con;
+	private PreparedStatement prepareStatement;
 
 	public DepartmentServiceImpl() {
 		DeptList = new ArrayList<Department>();
@@ -23,11 +29,25 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	@Override
 	public boolean add(Department department) {
-		if (getdep(department.getDepartmentId()) == null) {
+		con=DBConnection.getConnection();
+		try {
+			prepareStatement=con.prepareStatement("insert into department values(?,?);");
+			prepareStatement.setInt(1, department.getDepartmentId());
+			prepareStatement.setString(2, department.getDepartmentName());
+			prepareStatement.executeUpdate();
+			
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		/*if (getdep(department.getDepartmentId()) == null) {
 			DeptList.add(department);
 			return true;
 		}
-		return false;
+		return false;*/
 	}
 
 	@Override

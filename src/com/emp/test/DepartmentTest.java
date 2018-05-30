@@ -17,21 +17,21 @@ public class DepartmentTest {
 		empservice = new EmployeeServiceImpl();
 		deptservice = new DepartmentServiceImpl(empservice);
 
-		Employee emp;
+		/*Employee emp;
 		emp = new Employee(101, "ray", 67890);
 		empservice.save(emp);
 		emp = new Employee(201, "mellisa", 56789);
 		empservice.save(emp);
 		emp = new Employee(132, "Aria", 789000);
 		empservice.save(emp);
-		emp = new Employee(234, "Emily", 7678);
+		emp = new Employee(234, "Emily", 7678);*/
 
 		Department dep1;
-		dep1 = new Department(111, "IT");
+		dep1 = new Department(13, "IT");
 		deptservice.add(dep1);
-		dep1 = new Department(121, "QA");
+		dep1 = new Department(14, "QA");
 		deptservice.add(dep1);
-		dep1 = new Department(123, "Network");
+		dep1 = new Department(15, "Network");
 		deptservice.add(dep1);
 	}
 
@@ -45,8 +45,9 @@ public class DepartmentTest {
 		// dep1=new Department(123,"Testing"); //to update creating object with
 		// deptId which we want to update
 		// deptservice.update(dep1);
-		
-		deptservice.addEmployeeToDepartment(101, 123);
+		deptservice.delete(111);
+		deptservice.delete(121);
+/*		deptservice.addEmployeeToDepartment(101, 123);
 		System.out.println(deptservice.getdepartment());
 		deptservice.addEmployeeToDepartment(201, 123);
 		System.out.println(deptservice.getdepartment());
@@ -55,7 +56,7 @@ public class DepartmentTest {
 		deptservice.addEmployeeToDepartment(132, 111);
 		System.out.println(deptservice.getdepartment());
 		deptservice.addEmployeeToDepartment(234, 121);
-		System.out.println(deptservice.getdepartment());
+		System.out.println(deptservice.getdepartment());*/
 		//deptservice.deleteEmployeefromDepartment(123, 101);
 		//System.out.println(deptservice.getdepartment());
 		//deptservice.getEmployees(123);
