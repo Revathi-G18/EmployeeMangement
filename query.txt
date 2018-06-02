@@ -17,6 +17,7 @@ DDL
 //CREATING EMPLOYEE TABLE
 CREATE TABLE EMPLOYEE(
 ID INT PRIMARY KEY,
+//why size is 122? around 30 is enough right?
 NAME VARCHAR(122) NOT NULL,
 SALARY INT,
 DEPTID INT REFERENCES DEPARTMENT DEPTID,
@@ -29,6 +30,7 @@ DEPTNAME VARCHAR(122),
 )
 
 //ALTERING THE EMPLOYEE TABLE WITH FEW FIELDS
+//where is the data type while altering the table??
 ALTER TABLE EMPLOYEE ADD JOB;
 ALTER TABLE EMPLOYEE ADD MANAGER;
 ALTER TABLE EMPLOYEE ADD HIREDATE;
@@ -39,6 +41,8 @@ ALTER TABLE DEPARTMENT ADD LOCATION;
 DML
 
 //INSERT RECORDS IN EMPLOYEE TABLE
+//date also should be in ''
+//no need to mention all the fields if you are inserting all 
 INSERT INTO EMPLOYEE(ID,NAME,SALARY,DEPTID,JOB,MANAGER,HIREDATE) VALUES(1,'Aria',25000,101,'Quality Analyst','Ezra',2008-01-08);
 
 INSERT INTO EMPLOYEE
@@ -52,6 +56,7 @@ INSERT INTO EMPLOYEE(ID,NAME,SALARY,DEPTID,JOB,MANAGER,HIREDATE) VALUES(5,'Melli
 
 
 //INSERT RECORDS IN DEPARTMENT TABLE
+//wihtout '' how string fields are working?
 INSERT INTO DEPARTMENT(DEPTID,DEPTNAME,LOCATION) VALUES(101,	DEVELOPMENT,CHENNAI);
 INSERT INTO DEPARTMENT(DEPTID,DEPTNAME,LOCATION) VALUES(102,	TESTING,BANGALORE);
 INSERT INTO DEPARTMENT(DEPTID,DEPTNAME,LOCATION) VALUES(103,	MARKETING,MUMBAI);
@@ -70,6 +75,7 @@ select e.name,de.deptname from department de, employee e where e.deptid=de.depti
 //to display number of employees in particular department
 
 Fetch all the employees who salary more than a particular employee( name= ram)
+//more than or less than?
 select name from employee where salary<(select salary from employee where name='Emily')
 
 Fetch all the employees who salary more than a particular employee( name= ram)
@@ -84,11 +90,12 @@ select distinct job from employee
 
 select name,date from employee where date<'2000-04-18'
 //to get number of days employee worked in company
+//what is date?
 select id,(sysdate-date) from employee 
 Fetch all the employees details whose name starting with some character and exactly 
 having the length( say 5)
 select * from employee where  name like 'S%' and length(name)=7
-
+//what is date?
 select *from employee where month(date)=12
 
 select e.name,d.deptname from employee e, department d where d.deptid=e.deptid
@@ -108,4 +115,5 @@ Similarly,ON DELETE SET NULL indicates that when a row in the parent table is de
 the foreign key values are set to null.
 
 
-
+//what about other queries?  
+//add the question and query in sequence.
