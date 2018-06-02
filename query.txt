@@ -1,0 +1,111 @@
+SELECT * FROM DEPARTMENT 
+
+update department set location='chennai' where deptid=111;
+update department set location='chennai' where deptid=121;
+update department set location='chennai' where deptid=123;
+update department set location='chennai' where deptid=11;
+
+savepoint abc;
+
+update department set location='madrasssss' where deptid=111 or deptid=121;
+update department set location='madrassss' where deptid=14;
+
+rollback
+---------------------------------------------------------------------------------
+DDL
+
+//CREATING EMPLOYEE TABLE
+CREATE TABLE EMPLOYEE(
+ID INT PRIMARY KEY,
+NAME VARCHAR(122) NOT NULL,
+SALARY INT,
+DEPTID INT REFERENCES DEPARTMENT DEPTID,
+)
+
+//CREATING DEPARTMENT TABLE
+CREATE TABLE DEPARTMENT(
+DEPTID INT PRIMARY KEY,
+DEPTNAME VARCHAR(122),
+)
+
+//ALTERING THE EMPLOYEE TABLE WITH FEW FIELDS
+ALTER TABLE EMPLOYEE ADD JOB;
+ALTER TABLE EMPLOYEE ADD MANAGER;
+ALTER TABLE EMPLOYEE ADD HIREDATE;
+
+//ALTERING THE EMPLOYEE TABLE WITH FEW FIELDS
+ALTER TABLE DEPARTMENT ADD LOCATION;
+----------------------------------------------------------------------------
+DML
+
+//INSERT RECORDS IN EMPLOYEE TABLE
+INSERT INTO EMPLOYEE(ID,NAME,SALARY,DEPTID,JOB,MANAGER,HIREDATE) VALUES(1,'Aria',25000,101,'Quality Analyst','Ezra',2008-01-08);
+
+INSERT INTO EMPLOYEE
+(ID,NAME,SALARY,DEPTID,JOB,MANAGER,HIREDATE) VALUES(2,'thanos',30000,102,'TESTER','Emily',2018-01-18);
+
+INSERT INTO EMPLOYEE(ID,NAME,SALARY,DEPTID,JOB,MANAGER,HIREDATE) VALUES(3,'Groot',45000,101,'DEVELOPER','Aria',2012-09-14);
+
+INSERT INTO EMPLOYEE(ID,NAME,SALARY,DEPTID,JOB,MANAGER,HIREDATE) VALUES(4,'Spencer',23000,103,'Tester','Fitzz',2012-12-13);
+
+INSERT INTO EMPLOYEE(ID,NAME,SALARY,DEPTID,JOB,MANAGER,HIREDATE) VALUES(5,'Mellisa',35000,104,HR MANAGER,HARRY,2013-04-10);
+
+
+//INSERT RECORDS IN DEPARTMENT TABLE
+INSERT INTO DEPARTMENT(DEPTID,DEPTNAME,LOCATION) VALUES(101,	DEVELOPMENT,CHENNAI);
+INSERT INTO DEPARTMENT(DEPTID,DEPTNAME,LOCATION) VALUES(102,	TESTING,BANGALORE);
+INSERT INTO DEPARTMENT(DEPTID,DEPTNAME,LOCATION) VALUES(103,	MARKETING,MUMBAI);
+INSERT INTO DEPARTMENT(DEPTID,DEPTNAME,LOCATION) VALUES(104,	HR,PUNE);
+SELECT * FROM EMPLOYEE 
+
+select max(salary),name from employee  //wont work
+
+select * from employee where salary=7678
+
+select * from employee where salary=(select max(salary) from employee)
+
+select * from department
+// using alias display employee and department name from employee and department table
+select e.name,de.deptname from department de, employee e where e.deptid=de.deptid
+//to display number of employees in particular department
+
+Fetch all the employees who salary more than a particular employee( name= ram)
+select name from employee where salary<(select salary from employee where name='Emily')
+
+Fetch all the employees who salary more than a particular employee( name= ram)
+
+
+select count(*),d.location
+ from employee e,department d where e.deptid=d.deptid group by location  
+//order by salary
+select * from employee order by salary desc
+
+select distinct job from employee
+
+select name,date from employee where date<'2000-04-18'
+//to get number of days employee worked in company
+select id,(sysdate-date) from employee 
+Fetch all the employees details whose name starting with some character and exactly 
+having the length( say 5)
+select * from employee where  name like 'S%' and length(name)=7
+
+select *from employee where month(date)=12
+
+select e.name,d.deptname from employee e, department d where d.deptid=e.deptid
+
+select * from employee
+
+update employee set date='2006-12-04'
+select e.name from employee e, department d where d.deptid=e.deptid group  by d.deptname
+
+select name from employee where job=(select da from employee where name='Emily')
+
+select deptid, count(id) from employee  group by deptid 
+
+However,if ON DELETE CASCADE option is given at the time of defining foreign key,
+Oracle deletes all child rows while parent row is being deleted.
+Similarly,ON DELETE SET NULL indicates that when a row in the parent table is deleted, 
+the foreign key values are set to null.
+
+
+

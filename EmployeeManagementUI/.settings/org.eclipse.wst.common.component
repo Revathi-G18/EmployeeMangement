@@ -2,6 +2,10 @@
     <wb-module deploy-name="EmployeeManagementUI">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/WebContent/WEB-INF/lib"/>
+        <dependent-module archiveName="com.emp.employeemanagement.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/com.emp.employeemanagement/com.emp.employeemanagement">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="EmployeeManagementUI"/>
         <property name="java-output-path" value="/EmployeeManagementUI/build/classes"/>
     </wb-module>

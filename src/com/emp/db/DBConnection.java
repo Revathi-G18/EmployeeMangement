@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DBConnection {
 private static String name="sa";
 private static String password="";
-private static String url="jdbc:h2:tcp://localhost/~/empDB";
+private static String url="jdbc:h2:tcp://localhost/~/empdb";
 private static String driver="org.h2.Driver";
 private DBConnection(){
 	

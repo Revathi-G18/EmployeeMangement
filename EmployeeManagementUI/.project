@@ -3,6 +3,7 @@
 	<name>EmployeeManagementUI</name>
 	<comment></comment>
 	<projects>
+		<project>com.emp.employeemanagement</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

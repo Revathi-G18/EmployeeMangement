@@ -4,9 +4,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Employee</title>
 </head>
 <body>
-
+<h3 align="center">Employee Page</h3>
+<c:url value="/admin/InsertCategory" var="insert"></c:url>
+<form action=${insert} method="post">
+	<table align="center">
+		<tr>
+			<td>Category Name</td>
+			<td><input type="text" id="catname" name="catname" /></td>
+		</tr>
+		<td>Category Desc</td>
+		<td><input type="text" id="catdesc" name="catdesc" /></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="submit" value="SUBMIT" /> 
+			<input type="reset" value="RESET" /></td>
+		</tr>
+	</table>
+</form>
 </body>
 </html>
